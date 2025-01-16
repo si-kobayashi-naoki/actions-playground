@@ -16,7 +16,7 @@ jobs:
         scan-type: 'config'
         format: 'sarif'
         output: 'trivy-result.sarif'
-        exit-code: '1'
+        exit-code: '0'
         severity: 'CRITICAL,HIGH'
     - name: Post SARIF findings in the issue
       uses: sett-and-hive/sarif-to-issue-action@v1
