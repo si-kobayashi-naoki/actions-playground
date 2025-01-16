@@ -10,9 +10,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Run Trivy vulnerability scanner in fs mode
-      uses: aquasecurity/trivy-action@0.28.0
+    - name: Run Trivy vulnerability scanner in fs mode with reviewdog output on PR
+      uses: reviewdog/action-trivy@v1
       with:
-        scan-type: 'fs'
-        scan-ref: '.'
-        trivy-config: trivy.yaml
+        github_token: ${{ secrets.github_token }}
+        trivy_command: config
+        trivy_target: "${{ github.workspace }}/terraform"
+        working_directory: "terraform"
