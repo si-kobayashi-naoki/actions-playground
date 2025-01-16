@@ -15,7 +15,7 @@ jobs:
       with:
         scan-type: 'config'
         format: 'sarif'
-        output: './result/trivy-config.sarif'
+        output: 'result/trivy-config.sarif'
         exit-code: '1'
         severity: 'CRITICAL,HIGH'
     - name: Post SARIF findings in the issue
