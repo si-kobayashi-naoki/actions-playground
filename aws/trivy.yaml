@@ -1,0 +1,6 @@
+format: json
+exit-code: 1
+severity:
+  - CRITICAL
+  - HIGH
+  - MEDIUM
