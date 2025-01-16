@@ -14,17 +14,5 @@ jobs:
       uses: aquasecurity/trivy-action@0.28.0
       with:
         scan-type: 'config'
-        format: 'sarif'
-        output: 'trivy-result.sarif'
-        exit-code: '0'
+        exit-code: '1'
         severity: 'CRITICAL,HIGH'
-    - name: Post SARIF findings in the issue
-      uses: sett-and-hive/sarif-to-issue-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        repository: ${{ github.repository }}
-        branch: ${{ github.head_ref }}
-        sarif-file: 'trivy-result.sarif'
-        title: 'Security scanning results'
-        odc-sarif: false
-
