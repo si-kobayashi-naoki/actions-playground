@@ -24,7 +24,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
         branch: ${{ github.head_ref }}
-        pr-number: ${{ github.event.number }}
         sarif-file: 'trivy-result.sarif'
         title: 'Security scanning results'
         odc-sarif: false
