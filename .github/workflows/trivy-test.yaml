@@ -18,5 +18,4 @@ jobs:
         trivy_target: "${{ github.workspace }}/terraform"
         working_directory: "terraform"
         reporter: github-pr-review
-        fail_on_error: true
         fail_level: any
