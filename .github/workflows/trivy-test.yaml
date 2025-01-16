@@ -10,12 +10,22 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Run Trivy vulnerability scanner in fs mode with reviewdog output on PR
-      uses: reviewdog/action-trivy@v1
+    - name: Run Trivy vulnerability scanner in fs mode
+      uses: aquasecurity/trivy-action@0.28.0
       with:
-        github_token: ${{ secrets.github_token }}
-        trivy_command: config
-        trivy_target: "${{ github.workspace }}/terraform"
-        working_directory: "terraform"
-        reporter: github-pr-review
-        fail_level: any
+        scan-type: 'config'
+        format: 'sarif'
+        output: './result/trivy-config.sarif'
+        exit-code: '1'
+        severity: 'CRITICAL,HIGH'
+    - name: Post SARIF findings in the issue
+      uses: sett-and-hive/sarif-to-issue-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}
+        branch: ${{ github.head_ref }}
+        pr-number: ${{ github.event.number }}
+        sarif-file: './result/trivy-config.sarif'
+        title: 'Security scanning results'
+        odc-sarif: false
+
