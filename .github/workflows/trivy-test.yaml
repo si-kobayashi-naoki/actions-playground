@@ -15,7 +15,7 @@ jobs:
       with:
         scan-type: 'config'
         format: 'sarif'
-        output: 'result/trivy-config.sarif'
+        output: 'trivy-result.sarif'
         exit-code: '1'
         severity: 'CRITICAL,HIGH'
     - name: Post SARIF findings in the issue
@@ -25,7 +25,7 @@ jobs:
         repository: ${{ github.repository }}
         branch: ${{ github.head_ref }}
         pr-number: ${{ github.event.number }}
-        sarif-file: './result/trivy-config.sarif'
+        sarif-file: 'trivy-result.sarif'
         title: 'Security scanning results'
         odc-sarif: false
 
