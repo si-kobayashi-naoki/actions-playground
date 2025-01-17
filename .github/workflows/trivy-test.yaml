@@ -18,7 +18,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         trivy_command: config # Change trivy command
         trivy_target: "${{ github.workspace }}/terraform" # Change trivy target directory
-        trivy_flags: "--severity CRITICAL"
+        trivy_flags: "--severity CRITICAL,HIGH,MEDIUM"
         level: error # Get more output from reviewdog
         reporter: github-pr-review # Change reviewdog reporter
         fail_level: error # Fail action if any level of failures are found
